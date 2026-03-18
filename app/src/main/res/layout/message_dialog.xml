@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_new_allergen"
+
+    android:paddingVertical="20dp"
+    android:paddingHorizontal="10dp"
+    >
+
+
+
+    <TextView
+        android:id="@+id/text_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+
+        android:textColor="@color/black"
+        style="@style/Text2"
+
+        />
+
+
+
+    <Button
+        android:id="@+id/message_dialog_negative_button"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@id/text_message"
+        android:layout_marginTop="20dp"
+
+        style="@style/Text2"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/carmin"
+        />
+
+    <Button
+        android:id="@+id/message_dialog_positive_button"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@id/text_message"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentEnd="true"
+
+        style="@style/Text2"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/cornflower_blue"
+        />
+</RelativeLayout>

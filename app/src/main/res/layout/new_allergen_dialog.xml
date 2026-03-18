@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_new_allergen"
+
+    android:paddingVertical="20dp"
+    android:paddingHorizontal="10dp"
+    >
+
+    <EditText
+        android:id="@+id/edit_text_new_element"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+
+        android:layout_marginBottom="20dp"
+
+        android:fontFamily="@font/sigmar_cyrillic"
+        android:textSize="20sp"
+        android:paddingStart="10dp"
+
+        android:background="@drawable/shape_new_allergen_edit_text"
+        />
+
+    <TextView
+        android:id="@+id/new_allergen_severity_hint"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+
+        android:text="@string/new_allergen_severity_hint"
+
+        android:layout_below="@id/edit_text_new_element"
+        android:layout_marginEnd="30dp"
+
+        android:textColor="@color/black"
+
+        style="@style/Text2"
+        />
+
+    <Spinner
+        android:id="@+id/spinner_severity_allergy"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+
+        android:gravity="center_horizontal"
+
+        style="@style/CustomOpenedSpinner"
+
+
+        android:layout_below="@id/new_allergen_severity_hint"
+        android:layout_alignParentLeft="true"
+        />
+
+    <TextView
+        android:id="@+id/new_allergen_type_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@id/spinner_severity_allergy"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="20dp"
+
+        android:textColor="@color/black"
+        style="@style/Text2"
+
+        android:text="@string/new_allergen_type_allergy"
+        />
+
+    <Spinner
+        android:id="@+id/spinner_type_allergy"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+
+        android:layout_below="@id/new_allergen_type_hint"
+
+        android:paddingTop="6dp"
+
+        style="@style/CustomOpenedSpinner"
+        />
+
+    <Button
+        android:id="@+id/new_allergen_negative_button"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@id/spinner_type_allergy"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+
+        android:text="@string/new_allergen_negative_button"
+        style="@style/Text2"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/carmin"
+        />
+
+    <Button
+        android:id="@+id/new_allergen_positive_button"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@id/spinner_type_allergy"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentEnd="true"
+
+        android:text="@string/new_allergen_positive_button"
+        style="@style/Text2"
+        android:textColor="@color/black"
+        android:paddingHorizontal="0dp"
+        android:backgroundTint="@color/cornflower_blue"
+        />
+
+    <Button
+        android:id="@+id/new_allergen_remove_button"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@id/new_allergen_negative_button"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+
+        android:text="@string/new_allergen_additional_button"
+        style="@style/Text2"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/creamy"
+
+        android:visibility="gone"/>
+</RelativeLayout>

@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Allergi</string>
+
+    <string name="new_allergen_severity_hint">Выберите тяжесть аллергии</string>
+    <string name="new_allergen_type_allergy">Выберите тип аллергии</string>
+    <string name="new_allergen_negative_button">Отмена</string>
+    <string name="new_allergen_positive_button">Сохранить</string>
+    <string name="new_allergen_additional_button">Удалить</string>
+
+    <string name="fragment_list_allergy_no_items_title">Вы ещё не добавили свои аллергии</string>
+
+
+    <string name="storage_file">storage_file</string>
+    <string name="key_list_allergy">key_list_allergy</string>
+</resources>

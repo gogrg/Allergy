@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="light_grey">#FFCCCCCC</color>
+    <color name="king_purpur">#FF7851A9</color>
+    <color name="emerald">#FF50C878</color>
+    <color name="vanil">#D5713F</color>
+    <color name="creamy">#FFFDF4E3</color>
+    <color name="carmin">#FF960018</color>
+    <color name="cornflower_blue"> #FF6495ED</color>
+</resources>

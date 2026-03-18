@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/creamy">
+
+    <RelativeLayout
+        android:id="@+id/top_panel"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <ImageButton
+            android:id="@+id/button_new_allergen"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+
+            style="@style/CircleDataElement"
+
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="10dp"
+
+            android:layout_alignParentEnd="true"
+
+            android:src="@drawable/icon_plus"
+            android:scaleType="centerInside"
+            android:paddingHorizontal="2dp"
+            android:paddingVertical="3dp"
+            />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/list_allergy_fragment_default_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="@string/fragment_list_allergy_no_items_title"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+    />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewAllergy"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:layout_below="@id/top_panel"
+
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+    />
+
+</RelativeLayout>

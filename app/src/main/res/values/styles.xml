@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TransparentDialog" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="CircleDataElement">
+        <item name="android:background">@drawable/shape_oval_allergen_element_icons</item>
+        <item name="fontFamily">@font/sigmar_cyrillic</item>
+        <item name="android:textSize">25sp</item>
+    </style>
+
+    <style name="RectangleDataElement">
+        <item name="android:background">@drawable/shape_rectangle_allergen_element_icons</item>
+        <item name="fontFamily">@font/sigmar_cyrillic</item>
+        <item name="android:textSize">25sp</item>
+    </style>
+
+    <style name="CustomSpinnerDropdown">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="CustomOpenedSpinner">
+        <item name="android:background">@drawable/shape_rectangle_allergen_element_icons</item>
+        <item name="android:popupBackground">@drawable/shape_opened_spinner</item>
+    </style>
+
+
+
+
+    <style name="Text1">
+        <item name="fontFamily">@font/sigmar_cyrillic</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Text2">
+        <item name="fontFamily">@font/sigmar_cyrillic</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="Text3">
+        <item name="fontFamily">@font/sigmar_cyrillic</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+</resources>
