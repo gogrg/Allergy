@@ -1,4 +1,4 @@
-package com.example.allergi.optimize_activity.list_allergy;
+package com.example.allergi.accounting_activity.list_allergy;
 
 import static android.view.View.GONE;
 
@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.allergi.R;
-import com.example.allergi.accounting_activity.dto.AllergenDTO;
+import com.example.allergi.accounting_activity.dto.AllergenAccountingDTO;
 import com.example.allergi.utils.StaticSharedPreferences;
 import com.google.gson.reflect.TypeToken;
 
@@ -21,11 +21,11 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FragmentListAllergy extends Fragment {
-    private List<AllergenDTO> listAllergens;
+public class AccountingFragmentListAllergy extends Fragment {
+    private List<AllergenAccountingDTO> listAllergens;
     TextView defaultTitle;
-    public FragmentListAllergy () {
-        super(R.layout.fragment_allergi_list);
+    public AccountingFragmentListAllergy() {
+        super(R.layout.fragment_allergi_list_optimize);
 
     }
 
@@ -36,11 +36,11 @@ public class FragmentListAllergy extends Fragment {
         TextView defaultTitle = view.findViewById(R.id.list_allergy_fragment_default_title);
 
 
-        Type typeList = new TypeToken<List<AllergenDTO>>(){}.getType();
+        Type typeList = new TypeToken<List<AllergenAccountingDTO>>(){}.getType();
         try {
-            listAllergens = StaticSharedPreferences.getObject(getString(R.string.storage_file), getString(R.string.key_list_allergy), typeList, getContext());
+            listAllergens = StaticSharedPreferences.getObject(getString(R.string.storage_file), getString(R.string.key_list_accounting_allergy), typeList, getContext());
         } catch (IllegalArgumentException e) {
-            listAllergens = new ArrayList<AllergenDTO>();
+            listAllergens = new ArrayList<AllergenAccountingDTO>();
         }
 
         if (!listAllergens.isEmpty()) {
@@ -49,14 +49,14 @@ public class FragmentListAllergy extends Fragment {
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerViewAllergy);
 
-        ListAllergiAdapter adapter = new ListAllergiAdapter(this.getContext(), listAllergens, getParentFragmentManager(), defaultTitle);
+        AccountingListAllergiAdapter adapter = new AccountingListAllergiAdapter(this.getContext(), listAllergens, getParentFragmentManager(), defaultTitle);
 
         recyclerView.setAdapter(adapter);
 
         ImageButton newAllergenButton = view.findViewById(R.id.button_new_allergen);
 
         newAllergenButton.setOnClickListener(v -> {
-            DialogAddAllergen dialog = new DialogAddAllergen(listAllergens, adapter, () -> {defaultTitle.setVisibility(GONE);});
+            AccountingDialogAddAllergen dialog = new AccountingDialogAddAllergen(listAllergens, adapter, () -> {defaultTitle.setVisibility(GONE);});
             dialog.show(getParentFragmentManager(), "DialogNewAllergen");
         });
     }

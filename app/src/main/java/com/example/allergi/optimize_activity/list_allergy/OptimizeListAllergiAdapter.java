@@ -1,4 +1,4 @@
-package com.example.allergi.accounting_activity.list_allergy;
+package com.example.allergi.optimize_activity.list_allergy;
 
 import static android.view.View.VISIBLE;
 
@@ -15,17 +15,19 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.allergi.R;
-import com.example.allergi.accounting_activity.dto.AllergenDTO;
+import com.example.allergi.optimize_activity.dto.AllergenOptimizeDTO;
 
 import java.util.List;
 
-public class ListAllergiAdapter extends RecyclerView.Adapter<ListAllergiAdapter.ListAllergiHolder>{
+import lombok.Getter;
+
+public class OptimizeListAllergiAdapter extends RecyclerView.Adapter<OptimizeListAllergiAdapter.ListAllergiHolder>{
     private final LayoutInflater inflater;
-    private final List<AllergenDTO> allergens;
+    private final List<AllergenOptimizeDTO> allergens;
     private final FragmentManager manager;
     private final TextView defaultTitle;
 
-    ListAllergiAdapter (Context context, List<AllergenDTO> allergens, FragmentManager manager, TextView defaultTitle) {
+    OptimizeListAllergiAdapter(Context context, List<AllergenOptimizeDTO> allergens, FragmentManager manager, TextView defaultTitle) {
         this.allergens = allergens;
         this.inflater = LayoutInflater.from(context);
         this.manager = manager;
@@ -43,37 +45,18 @@ public class ListAllergiAdapter extends RecyclerView.Adapter<ListAllergiAdapter.
 
     @Override
     public void onBindViewHolder (ListAllergiHolder holder, int position) {
-        AllergenDTO allergen = allergens.get(position);
+        AllergenOptimizeDTO allergen = allergens.get(position);
 
         holder.allergen = allergen;
 
         holder.severityAllergy.setText(String.valueOf(allergen.getSeverityAllergen()));
+        holder.pleasureAllergen.setText(String.valueOf(allergen.getPleasureAllergen()));
         holder.nameAllergen.setText(allergen.getNameAllergen());
 
-        switch (allergen.getTypeAllergen()) {
-            case FOOD:
-                holder.typeAllergenImage.setImageResource(R.drawable.icon_food);
-                break;
-            case ANIMAL:
-                holder.typeAllergenImage.setImageResource(R.drawable.icon_animal);
-                break;
-            case MEDICINE:
-                holder.typeAllergenImage.setImageResource(R.drawable.icon_medicine);
-                break;
-            case RESPIRATORY:
-                holder.typeAllergenImage.setImageResource(R.drawable.icon_respiratory);
-                break;
-            case SKIN:
-                holder.typeAllergenImage.setImageResource(R.drawable.icon_skin);
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + allergen.getTypeAllergen());
-        }
-
         holder.buttonEdit.setOnClickListener(v -> {
-            DialogEditAllergen editDialog = new DialogEditAllergen(holder.allergen.getNameAllergen(),
+            OptimizeDialogEditAllergen editDialog = new OptimizeDialogEditAllergen(holder.allergen.getNameAllergen(),
                     holder.allergen.getSeverityAllergen(),
-                    holder.allergen.getTypeAllergen(),
+                    holder.allergen.getPleasureAllergen(),
                     position,
                     allergens,
                     this,
@@ -90,17 +73,19 @@ public class ListAllergiAdapter extends RecyclerView.Adapter<ListAllergiAdapter.
         return allergens.size();
     }
 
+    @Getter
     public class ListAllergiHolder extends RecyclerView.ViewHolder {
-        final ImageView typeAllergenImage;
-        final TextView severityAllergy;
-        final TextView nameAllergen;
-        final ImageButton buttonEdit;
-        AllergenDTO allergen;
+        final private TextView pleasureAllergen;
+        final private TextView severityAllergy;
+        final private TextView nameAllergen;
+        final private ImageButton buttonEdit;
+        private AllergenOptimizeDTO allergen;
 
         ListAllergiHolder (@NonNull View view) {
             super(view);
 
-            typeAllergenImage = view.findViewById(R.id.allergen_element_type_allergen);
+            pleasureAllergen = view.findViewById(R.id.allergen_element_amount_pleasure);
+            pleasureAllergen.setVisibility(VISIBLE);
             severityAllergy = view.findViewById(R.id.allergen_element_severity_of_allergy);
             nameAllergen = view.findViewById(R.id.allergen_element_name_allergen);
             buttonEdit = view.findViewById(R.id.allergen_element_button_edit);

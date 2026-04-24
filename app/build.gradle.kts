@@ -33,6 +33,7 @@ android {
 
 dependencies {
 
+    implementation(libs.commons.math3)
     implementation(libs.gson)
 
     implementation(libs.appcompat)

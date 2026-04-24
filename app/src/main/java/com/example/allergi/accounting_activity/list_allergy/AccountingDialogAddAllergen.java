@@ -1,4 +1,6 @@
-package com.example.allergi.optimize_activity.list_allergy;
+package com.example.allergi.accounting_activity.list_allergy;
+
+import static android.util.Log.v;
 
 import android.annotation.SuppressLint;
 import android.graphics.Typeface;
@@ -18,7 +20,7 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.allergi.R;
-import com.example.allergi.accounting_activity.dto.AllergenDTO;
+import com.example.allergi.accounting_activity.dto.AllergenAccountingDTO;
 import com.example.allergi.accounting_activity.dto.ItemSpinnerTypeAllergyDTO;
 import com.example.allergi.accounting_activity.dto.TypesAllergen;
 import com.example.allergi.utils.MessageDialog;
@@ -26,24 +28,24 @@ import com.example.allergi.utils.StaticSharedPreferences;
 
 import java.util.List;
 
-public class DialogAddAllergen extends DialogFragment {
+public class AccountingDialogAddAllergen extends DialogFragment {
     protected final int DEFAULT_VALUE_SPINNER_TYPES_ALLERGY_ICON = -10;
     protected Integer[] severities;
     protected ItemSpinnerTypeAllergyDTO[] typesAllergyToSpinner;
-    protected List<AllergenDTO> listAllergens;
-    protected ListAllergiAdapter adapter;
+    protected List<AllergenAccountingDTO> listAllergens;
+    protected AccountingListAllergiAdapter adapter;
     protected OnChangeVisibleDefaultTitle switchVisible;
 
     public interface OnChangeVisibleDefaultTitle {
         void execute();
     }
 
-    public DialogAddAllergen (List<AllergenDTO> listAllergens, ListAllergiAdapter adapter) {
+    public AccountingDialogAddAllergen(List<AllergenAccountingDTO> listAllergens, AccountingListAllergiAdapter adapter) {
         this.listAllergens = listAllergens;
         this.adapter = adapter;
     }
 
-    public DialogAddAllergen (List<AllergenDTO> listAllergens, ListAllergiAdapter adapter, OnChangeVisibleDefaultTitle switchVisible) {
+    public AccountingDialogAddAllergen(List<AllergenAccountingDTO> listAllergens, AccountingListAllergiAdapter adapter, OnChangeVisibleDefaultTitle switchVisible) {
         this.listAllergens = listAllergens;
         this.adapter = adapter;
         this.switchVisible = switchVisible;
@@ -156,11 +158,11 @@ public class DialogAddAllergen extends DialogFragment {
                 errorDialog.show(getParentFragmentManager(), "MessageErrorAddElement");
             }
 
-            AllergenDTO newAllergen = new AllergenDTO(nameAllergen, severity, typeAllergen);
+            AllergenAccountingDTO newAllergen = new AllergenAccountingDTO(nameAllergen, severity, typeAllergen);
 
             listAllergens.add(newAllergen);
 
-            StaticSharedPreferences.putObject(getString(R.string.storage_file), getString(R.string.key_list_allergy), listAllergens, requireContext());
+            StaticSharedPreferences.putObject(getString(R.string.storage_file), getString(R.string.key_list_accounting_allergy), listAllergens, requireContext());
             adapter.notifyDataSetChanged();
 
             switchVisible.execute();

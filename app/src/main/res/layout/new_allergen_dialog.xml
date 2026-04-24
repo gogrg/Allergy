@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/shape_new_allergen"
@@ -55,6 +57,38 @@
         />
 
     <TextView
+        android:id="@+id/new_allergen_amount_pleasure"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+
+        android:text="@string/new_allergen_amount_pleasure"
+
+        android:layout_below="@id/spinner_severity_allergy"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="20dp"
+
+        android:textColor="@color/black"
+
+        style="@style/Text2"
+        android:visibility="gone"
+        />
+
+    <Spinner
+        android:id="@+id/spinner_amount_pleasure"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+
+        android:gravity="center_horizontal"
+
+        style="@style/CustomOpenedSpinner"
+
+
+        android:layout_below="@id/new_allergen_amount_pleasure"
+        android:paddingTop="6dp"
+        android:visibility="gone"
+        />
+
+    <TextView
         android:id="@+id/new_allergen_type_hint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -67,6 +101,7 @@
         style="@style/Text2"
 
         android:text="@string/new_allergen_type_allergy"
+        android:visibility="gone"
         />
 
     <Spinner
@@ -79,52 +114,59 @@
         android:paddingTop="6dp"
 
         style="@style/CustomOpenedSpinner"
+        android:visibility="gone"
         />
 
-    <Button
-        android:id="@+id/new_allergen_negative_button"
-        android:layout_width="140dp"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="260dp">
 
-        android:layout_below="@id/spinner_type_allergy"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
+        <Button
+            android:id="@+id/new_allergen_negative_button"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
 
-        android:text="@string/new_allergen_negative_button"
-        style="@style/Text2"
-        android:textColor="@color/black"
-        android:backgroundTint="@color/carmin"
-        />
+            android:text="@string/new_allergen_negative_button"
+            style="@style/Text2"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/carmin"
 
-    <Button
-        android:id="@+id/new_allergen_positive_button"
-        android:layout_width="140dp"
-        android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            />
 
-        android:layout_below="@id/spinner_type_allergy"
-        android:layout_marginTop="20dp"
-        android:layout_alignParentEnd="true"
+        <Button
+            android:id="@+id/new_allergen_positive_button"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
 
-        android:text="@string/new_allergen_positive_button"
-        style="@style/Text2"
-        android:textColor="@color/black"
-        android:paddingHorizontal="0dp"
-        android:backgroundTint="@color/cornflower_blue"
-        />
+            style="@style/Text2"
+            android:text="@string/new_allergen_positive_button"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/cornflower_blue"
+            android:paddingHorizontal="0dp"
 
-    <Button
-        android:id="@+id/new_allergen_remove_button"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            />
 
-        android:layout_below="@id/new_allergen_negative_button"
-        android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true"
+        <Button
+            android:id="@+id/new_allergen_remove_button"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
 
-        android:text="@string/new_allergen_additional_button"
-        style="@style/Text2"
-        android:textColor="@color/black"
-        android:backgroundTint="@color/creamy"
+            style="@style/Text2"
+            android:text="@string/new_allergen_additional_button"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/creamy"
 
-        android:visibility="gone"/>
+            android:layout_centerHorizontal="true"
+
+            android:layout_below="@+id/new_allergen_positive_button"
+            android:layout_marginTop="10dp"
+            android:visibility="gone"
+            />
+    </RelativeLayout>
 </RelativeLayout>

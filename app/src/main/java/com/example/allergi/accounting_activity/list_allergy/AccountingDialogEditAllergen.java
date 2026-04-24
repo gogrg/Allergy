@@ -1,4 +1,4 @@
-package com.example.allergi.optimize_activity.list_allergy;
+package com.example.allergi.accounting_activity.list_allergy;
 
 import android.os.Bundle;
 import android.view.View;
@@ -10,20 +10,20 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.allergi.R;
-import com.example.allergi.accounting_activity.dto.AllergenDTO;
+import com.example.allergi.accounting_activity.dto.AllergenAccountingDTO;
 import com.example.allergi.accounting_activity.dto.TypesAllergen;
 import com.example.allergi.utils.MessageDialog;
 import com.example.allergi.utils.StaticSharedPreferences;
 
 import java.util.List;
 
-public class DialogEditAllergen extends DialogAddAllergen {
+public class AccountingDialogEditAllergen extends AccountingDialogAddAllergen {
     private String curName;
     private int severity;
     private TypesAllergen typesAllergen;
     private int position;
-    public DialogEditAllergen (String curName, int severity, TypesAllergen typesAllergen, int position,
-                               List<AllergenDTO> listAllergens, ListAllergiAdapter adapter, OnChangeVisibleDefaultTitle switchVisible) {
+    public AccountingDialogEditAllergen(String curName, int severity, TypesAllergen typesAllergen, int position,
+                                        List<AllergenAccountingDTO> listAllergens, AccountingListAllergiAdapter adapter, OnChangeVisibleDefaultTitle switchVisible) {
         super(listAllergens, adapter);
         this.curName = curName;
         this.severity = severity;
@@ -71,11 +71,11 @@ public class DialogEditAllergen extends DialogAddAllergen {
                 errorDialog.show(getParentFragmentManager(), "MessageErrorAddElement");
             }
 
-            AllergenDTO newAllergen = new AllergenDTO(nameAllergen, severity, typeAllergen);
+            AllergenAccountingDTO newAllergen = new AllergenAccountingDTO(nameAllergen, severity, typeAllergen);
 
             listAllergens.set(position, newAllergen);
 
-            StaticSharedPreferences.putObject(getString(R.string.storage_file), getString(R.string.key_list_allergy), listAllergens, requireContext());
+            StaticSharedPreferences.putObject(getString(R.string.storage_file), getString(R.string.key_list_accounting_allergy), listAllergens, requireContext());
             adapter.notifyDataSetChanged();
             dismiss();
         });
@@ -84,7 +84,7 @@ public class DialogEditAllergen extends DialogAddAllergen {
         removeButton.setVisibility(View.VISIBLE);
         removeButton.setOnClickListener(v -> {
             listAllergens.remove(position);
-            StaticSharedPreferences.putObject(getString(R.string.storage_file), getString(R.string.key_list_allergy), listAllergens, requireContext());
+            StaticSharedPreferences.putObject(getString(R.string.storage_file), getString(R.string.key_list_accounting_allergy), listAllergens, requireContext());
 
             adapter.notifyDataSetChanged();
             if (listAllergens.isEmpty()) {

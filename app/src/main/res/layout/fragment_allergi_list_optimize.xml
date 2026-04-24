@@ -8,7 +8,53 @@
     <RelativeLayout
         android:id="@+id/top_panel"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="60dp"
+        android:paddingHorizontal="10dp">
+
+        <TextView
+            android:id="@+id/list_optimize_text_min"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="10"
+            style="@style/Text2"
+            android:layout_centerVertical="true"
+            />
+
+        <SeekBar
+            android:id="@+id/fragment_allergy_list_optimize_seek_bar"
+            android:layout_width="200dp"
+            android:layout_height="10dp"
+
+            android:min="10"
+            android:max="100"
+            android:progress="50"
+
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/list_optimize_text_min"
+            />
+
+        <TextView
+            android:id="@+id/list_optimize_text_max"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="100"
+            style="@style/Text2"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/fragment_allergy_list_optimize_seek_bar"
+            />
+
+        <TextView
+            android:id="@+id/list_optimize_text_cur"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            style="@style/Text2"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/list_optimize_text_max"
+            android:layout_marginStart="20dp"
+            />
 
         <ImageButton
             android:id="@+id/button_new_allergen"
@@ -27,6 +73,7 @@
             android:paddingHorizontal="2dp"
             android:paddingVertical="3dp"
             />
+
 
     </RelativeLayout>
 

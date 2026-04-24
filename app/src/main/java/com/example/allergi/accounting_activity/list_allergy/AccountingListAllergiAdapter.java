@@ -1,4 +1,4 @@
-package com.example.allergi.optimize_activity.list_allergy;
+package com.example.allergi.accounting_activity.list_allergy;
 
 import static android.view.View.VISIBLE;
 
@@ -15,17 +15,17 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.allergi.R;
-import com.example.allergi.accounting_activity.dto.AllergenDTO;
+import com.example.allergi.accounting_activity.dto.AllergenAccountingDTO;
 
 import java.util.List;
 
-public class ListAllergiAdapter extends RecyclerView.Adapter<ListAllergiAdapter.ListAllergiHolder>{
+public class AccountingListAllergiAdapter extends RecyclerView.Adapter<AccountingListAllergiAdapter.ListAllergiHolder>{
     private final LayoutInflater inflater;
-    private final List<AllergenDTO> allergens;
+    private final List<AllergenAccountingDTO> allergens;
     private final FragmentManager manager;
     private final TextView defaultTitle;
 
-    ListAllergiAdapter (Context context, List<AllergenDTO> allergens, FragmentManager manager, TextView defaultTitle) {
+    AccountingListAllergiAdapter(Context context, List<AllergenAccountingDTO> allergens, FragmentManager manager, TextView defaultTitle) {
         this.allergens = allergens;
         this.inflater = LayoutInflater.from(context);
         this.manager = manager;
@@ -43,7 +43,7 @@ public class ListAllergiAdapter extends RecyclerView.Adapter<ListAllergiAdapter.
 
     @Override
     public void onBindViewHolder (ListAllergiHolder holder, int position) {
-        AllergenDTO allergen = allergens.get(position);
+        AllergenAccountingDTO allergen = allergens.get(position);
 
         holder.allergen = allergen;
 
@@ -71,7 +71,7 @@ public class ListAllergiAdapter extends RecyclerView.Adapter<ListAllergiAdapter.
         }
 
         holder.buttonEdit.setOnClickListener(v -> {
-            DialogEditAllergen editDialog = new DialogEditAllergen(holder.allergen.getNameAllergen(),
+            AccountingDialogEditAllergen editDialog = new AccountingDialogEditAllergen(holder.allergen.getNameAllergen(),
                     holder.allergen.getSeverityAllergen(),
                     holder.allergen.getTypeAllergen(),
                     position,
@@ -95,12 +95,13 @@ public class ListAllergiAdapter extends RecyclerView.Adapter<ListAllergiAdapter.
         final TextView severityAllergy;
         final TextView nameAllergen;
         final ImageButton buttonEdit;
-        AllergenDTO allergen;
+        AllergenAccountingDTO allergen;
 
         ListAllergiHolder (@NonNull View view) {
             super(view);
 
             typeAllergenImage = view.findViewById(R.id.allergen_element_type_allergen);
+            typeAllergenImage.setVisibility(VISIBLE);
             severityAllergy = view.findViewById(R.id.allergen_element_severity_of_allergy);
             nameAllergen = view.findViewById(R.id.allergen_element_name_allergen);
             buttonEdit = view.findViewById(R.id.allergen_element_button_edit);

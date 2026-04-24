@@ -6,4 +6,22 @@
     android:id="@+id/main"
     tools:context="MainActivity">
 
+    <Button
+        android:id="@+id/button_accounting_activity"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:text="accounting"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        />
+
+    <Button
+        android:id="@+id/button_optimize_activity"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:text="optimize"
+        android:layout_below="@id/button_accounting_activity"
+        android:layout_centerHorizontal="true"
+        />
+
 </RelativeLayout>

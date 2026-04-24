@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AllergenDTO {
+public class AllergenAccountingDTO {
     private String nameAllergen;
     private int severityAllergen;
     private TypesAllergen typeAllergen;

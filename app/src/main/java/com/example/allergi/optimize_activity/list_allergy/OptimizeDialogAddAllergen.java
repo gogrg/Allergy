@@ -1,6 +1,4 @@
-package com.example.allergi.accounting_activity.list_allergy;
-
-import static android.util.Log.v;
+package com.example.allergi.optimize_activity.list_allergy;
 
 import android.annotation.SuppressLint;
 import android.graphics.Typeface;
@@ -20,32 +18,33 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.allergi.R;
-import com.example.allergi.accounting_activity.dto.AllergenDTO;
+import com.example.allergi.optimize_activity.dto.AllergenOptimizeDTO;
 import com.example.allergi.accounting_activity.dto.ItemSpinnerTypeAllergyDTO;
 import com.example.allergi.accounting_activity.dto.TypesAllergen;
+import com.example.allergi.optimize_activity.dto.AllergenOptimizeDTO;
 import com.example.allergi.utils.MessageDialog;
 import com.example.allergi.utils.StaticSharedPreferences;
 
 import java.util.List;
 
-public class DialogAddAllergen extends DialogFragment {
+public class OptimizeDialogAddAllergen extends DialogFragment {
     protected final int DEFAULT_VALUE_SPINNER_TYPES_ALLERGY_ICON = -10;
     protected Integer[] severities;
-    protected ItemSpinnerTypeAllergyDTO[] typesAllergyToSpinner;
-    protected List<AllergenDTO> listAllergens;
-    protected ListAllergiAdapter adapter;
+    protected Integer[] pleasure;
+    protected List<AllergenOptimizeDTO> listAllergens;
+    protected OptimizeListAllergiAdapter adapter;
     protected OnChangeVisibleDefaultTitle switchVisible;
 
     public interface OnChangeVisibleDefaultTitle {
         void execute();
     }
 
-    public DialogAddAllergen (List<AllergenDTO> listAllergens, ListAllergiAdapter adapter) {
+    public OptimizeDialogAddAllergen(List<AllergenOptimizeDTO> listAllergens, OptimizeListAllergiAdapter adapter) {
         this.listAllergens = listAllergens;
         this.adapter = adapter;
     }
 
-    public DialogAddAllergen (List<AllergenDTO> listAllergens, ListAllergiAdapter adapter, OnChangeVisibleDefaultTitle switchVisible) {
+    public OptimizeDialogAddAllergen(List<AllergenOptimizeDTO> listAllergens, OptimizeListAllergiAdapter adapter, OnChangeVisibleDefaultTitle switchVisible) {
         this.listAllergens = listAllergens;
         this.adapter = adapter;
         this.switchVisible = switchVisible;
@@ -58,14 +57,7 @@ public class DialogAddAllergen extends DialogFragment {
         setStyle(DialogFragment.STYLE_NORMAL, R.style.TransparentDialog);
 
         severities = new Integer[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-
-        typesAllergyToSpinner =
-                new ItemSpinnerTypeAllergyDTO[]{new ItemSpinnerTypeAllergyDTO("Выберите элемент", DEFAULT_VALUE_SPINNER_TYPES_ALLERGY_ICON, TypesAllergen.NO_SELECTED),
-                        new ItemSpinnerTypeAllergyDTO("Животные", R.drawable.icon_animal, TypesAllergen.ANIMAL),
-                        new ItemSpinnerTypeAllergyDTO("Еда", R.drawable.icon_food, TypesAllergen.FOOD),
-                        new ItemSpinnerTypeAllergyDTO("Лекарства", R.drawable.icon_medicine, TypesAllergen.MEDICINE),
-                        new ItemSpinnerTypeAllergyDTO("Респираторная", R.drawable.icon_respiratory, TypesAllergen.RESPIRATORY),
-                        new ItemSpinnerTypeAllergyDTO("Кожная", R.drawable.icon_skin, TypesAllergen.SKIN)};
+        pleasure = new Integer[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     }
 
     @NonNull
@@ -75,6 +67,8 @@ public class DialogAddAllergen extends DialogFragment {
 
     @NonNull
     public void onViewCreated (@NonNull View view, @Nullable Bundle savesInstance) {
+        TextView spinnerPleasureTitle = view.findViewById(R.id.new_allergen_amount_pleasure);
+        spinnerPleasureTitle.setVisibility(View.VISIBLE);
         //спинер тяжести аллергии
         Spinner spinnerSeverity = view.findViewById(R.id.spinner_severity_allergy);
         ArrayAdapter<Integer> spinnerSeverityAdapter = new ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, severities) {
@@ -104,9 +98,9 @@ public class DialogAddAllergen extends DialogFragment {
         spinnerSeverity.setAdapter(spinnerSeverityAdapter);
 
 
-        //Спинер типов аллергий
-        Spinner spinnerType = view.findViewById(R.id.spinner_type_allergy);
-        ArrayAdapter<ItemSpinnerTypeAllergyDTO> spinnerTypeAdapter = new ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, typesAllergyToSpinner) {
+        //Спинер удовольствия от аллергена
+        Spinner spinnerPleasure = view.findViewById(R.id.spinner_amount_pleasure);
+        ArrayAdapter<Integer> spinnerPleasureAdapter = new ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, pleasure) {
             @Override
             public View getView (int position, View convertView, ViewGroup parent) {
                 TextView textView = (TextView) super.getView(position, convertView, parent);
@@ -123,22 +117,15 @@ public class DialogAddAllergen extends DialogFragment {
 
             @SuppressLint("ResourceAsColor")
             private void customizeItem (TextView textView, int position) {
-                ItemSpinnerTypeAllergyDTO item = (ItemSpinnerTypeAllergyDTO) getItem(position);
-
-                textView.setText(item.getNameAllergy());
-
                 Typeface font = ResourcesCompat.getFont(requireContext(), R.font.sigmar_cyrillic);
                 textView.setTypeface(font);
 
                 textView.setTextColor(R.color.black);
-
-                if (item.getIconResId() != DEFAULT_VALUE_SPINNER_TYPES_ALLERGY_ICON) {
-                    textView.setCompoundDrawablesWithIntrinsicBounds(item.getIconResId(), 0, 0, 0);
-                }
             }
         };
-        spinnerTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        spinnerType.setAdapter(spinnerTypeAdapter);
+        spinnerPleasureAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        spinnerPleasure.setAdapter(spinnerSeverityAdapter);
+        spinnerPleasure.setVisibility(View.VISIBLE);
 
         //настройка кнопок
         Button negativeButton = view.findViewById(R.id.new_allergen_negative_button);
@@ -151,18 +138,15 @@ public class DialogAddAllergen extends DialogFragment {
         positiveButton.setOnClickListener(v -> {
             String nameAllergen = ((EditText)view.findViewById(R.id.edit_text_new_element)).getText().toString();
             Integer severity = ((Spinner)view.findViewById(R.id.spinner_severity_allergy)).getSelectedItemPosition();
-            TypesAllergen typeAllergen = typesAllergyToSpinner[((Spinner)view.findViewById(R.id.spinner_type_allergy)).getSelectedItemPosition()].getTypeAllergen();
+            Integer pleasure = ((Spinner)view.findViewById(R.id.spinner_amount_pleasure)).getSelectedItemPosition();
 
-            if (nameAllergen.isEmpty() || typeAllergen == TypesAllergen.NO_SELECTED) {
-                MessageDialog errorDialog = new MessageDialog("Не заполнены поля", "", "Ок", false);
-                errorDialog.show(getParentFragmentManager(), "MessageErrorAddElement");
-            }
 
-            AllergenDTO newAllergen = new AllergenDTO(nameAllergen, severity, typeAllergen);
+
+            AllergenOptimizeDTO newAllergen = new AllergenOptimizeDTO(nameAllergen, severity, pleasure);
 
             listAllergens.add(newAllergen);
 
-            StaticSharedPreferences.putObject(getString(R.string.storage_file), getString(R.string.key_list_allergy), listAllergens, requireContext());
+            StaticSharedPreferences.putObject(getString(R.string.storage_file), getString(R.string.key_list_optimize_allergy), listAllergens, requireContext());
             adapter.notifyDataSetChanged();
 
             switchVisible.execute();
